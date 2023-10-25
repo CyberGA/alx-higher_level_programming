@@ -44,7 +44,8 @@ class Square:
         Args:
             value (tuple): The new position.
         """
-        if value[0] < 0 or value[1] < 0:
+        if (not isinstance(value, tuple) or len(value) != 2
+        or value[0] < 0 or value[1] < 0):
             raise TypeError("position must be a tuple of 2 positive integers")
         self.__position = value
 
@@ -54,10 +55,10 @@ class Square:
 
     def my_print(self):
         """Prints the square to stdout"""
-        if self.size == 0:
+        if self.__size == 0:
             print('')
         else:
-            for j in range(0, self.position[1]):
+            for j in range(0, self.__position[1]):
                 print("")
-            for _ in range(self.size):
-                print((" " * self.position[0]) + ("#" * self.size))
+            for _ in range(self.__size):
+                print((" " * self.__position[0]) + ("#" * self.__size))
