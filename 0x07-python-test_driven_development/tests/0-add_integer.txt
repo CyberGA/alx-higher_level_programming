@@ -1,141 +1,124 @@
-Add Integer Function
-===================
 
-This is an example test file for the `add_integer` function.
+===========================
+How to Use 0-add_integer.py
+===========================
 
-Import the `add_integer` function from the `my_module` module:
+This module defines an integer addition function ``add_integer(a, b=98)``.
 
-.. code-block:: python
+Usage
+=====
+
+``add_integer(...)``` returns the addition of its two arguments. For numbers,
+that value is equivalent to using the ``+`` operator.
+
+::
 
     >>> add_integer = __import__('0-add_integer').add_integer
+    >>> add_integer(2, 3)
+    5
 
-Perform simple addition:
+::
 
-.. code-block:: python
+    >>> add_integer(2, -3)
+    -1
 
-    >>> add_integer(4, 5)
-    9
-    >>> add_integer(14, 27)
-    41
+The function also works with floating-point values.
 
-When calling the function with a single argument, it returns the number plus 98:
+::
 
-.. code-block:: python
+    >>> add_integer(2.0, 3.0)
+    5
 
-    >>> add_integer(1)
-    99
+Note that floats are casted to ints before addition is performed.
 
+::
 
-Handling Negative Numbers
--------------------------
+    >>> add_integer(2.9, 0.2)
+    2
 
-You can also add negative numbers:
+::
 
-.. code-block:: python
+    >>> add_integer(-2.9, -0.2)
+    -2
 
-    >>> add_integer(-1, -2)
-    -3
-    >>> add_integer(-6, -7)
-    -13
+Floating and non-floating point values can be combined.
 
-Handling Large Positive Integers
-------------------------------
+::
 
-The function works with large positive integers as well:
+    >>> add_integer(2.3, -3)
+    -1
 
-.. code-block:: python
+The second argument is optional - by default, it is 98.
 
-    >>> add_integer(10**6, 10**7)
-    11000000
+::
 
-Using Keyword Syntax
--------------------
+    >>> add_integer(2)
+    100
 
-You can also use the keyword syntax for calling functions with optional arguments:
+Non-Numbers
+===========
 
-.. code-block:: python
+``add_integer()`` expects that both arguments are either integers or floats.
+If either argument is a non-integer and non-float, a TypeError is raised:
 
-    >>> add_integer(a=12, b=25)
-    37
+::
 
-Handling Float Values
----------------------
-
-If arguments passed are of float type, the function typecasts them into integers before addition:
-
-.. code-block:: python
-
-    >>> add_integer(1.5, 2.5)
-    3
-    >>> add_integer(0.000001, 0.000002)
-    0
-
-Combining Floating and Non-Floating Values
------------------------------------------
-
-Floating and non-floating values can be combined:
-
-.. code-block:: python
-
-    >>> add_integer(1.5, 2)
-    3
-
-Handling Errors
----------------
-
-The function raises a `TypeError` if you pass invalid types as arguments:
-
-.. code-block:: python
-
-    >>> add_integer('one', 'two') # doctest: +IGNORE_EXCEPTION_DETAIL
+    >>> add_integer("hello", 3)
     Traceback (most recent call last):
-    ...
-    TypeError: Input must be integers or float
+    TypeError: a must be an integer
 
-.. code-block:: python
+::
+
+    >>> add_integer(2, "hello")
+    Traceback (most recent call last):
+    TypeError: b must be an integer
+
+::
 
     >>> add_integer(None)
     Traceback (most recent call last):
-    ...
     TypeError: a must be an integer
 
-.. code-block:: python
+::
 
-    >>> add_integer(4, 'None')
+    >>> add_integer(2.3, None)
     Traceback (most recent call last):
-    ...
     TypeError: b must be an integer
 
-If both arguments are non-integers and non-floats, a `TypeError` message is only
-printed for the first argument:
+If both arguments are non-integers and non-floats, a TypeError message is only
+printed for the first argument.
 
-.. code-block:: python
+::
 
-    >>> add_integer("string", "another")
+    >>> add_integer("hello", "there")
     Traceback (most recent call last):
-    ...
     TypeError: a must be an integer
 
-Handling Overflow
-----------------
+The function will fail if infinity is provided.
 
-The function also handles overflow with very large floats:
+::
 
-.. code-block:: python
-
-    >>> add_integer(1e309, 4e309) # doctest: +IGNORE_EXCEPTION_DETAIL
+    >>> add_integer(float('inf'))
     Traceback (most recent call last):
-    ...
-    OverflowError: int too large to convert to float
+    OverflowError: cannot convert float infinity to integer
+     
 
-Invalid Keyword Argument
-------------------------
+::
 
-If you provide an invalid keyword argument, the function raises a `TypeError`:
-
-.. code-block:: python
-
-    >>> add_integer(a=2, c=4)
+    >>> add_integer(2, float('inf'))
     Traceback (most recent call last):
-    ...
-    TypeError: add_integer() got an unexpected keyword argument 'c'
+    OverflowError: cannot convert float infinity to integer
+
+And again with NaN numbers.
+
+::
+
+    >>> add_integer(float('nan'))
+    Traceback (most recent call last):
+    ValueError: cannot convert float NaN to integer
+
+::
+
+    >>> add_integer(2, float('nan'))
+    Traceback (most recent call last):
+    ValueError: cannot convert float NaN to integer
