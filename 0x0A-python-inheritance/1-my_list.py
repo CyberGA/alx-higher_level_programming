@@ -1,14 +1,16 @@
 #!/usr/bin/python3
-"""class with sort method"""
+"""
+MyList class
+"""
 
 
 class MyList(list):
-    """a derived class of list"""
+    """a subclass of list"""
 
     def __init__(self):
-        """MyList constructor method"""
+        """initializes the object"""
         super().__init__()
 
     def print_sorted(self):
-        """prints list in a sorted ascending order"""
+        """prints the sorted list"""
         print(sorted(self))
