@@ -7,7 +7,7 @@ class MyList(list):
 
     def __init__(self):
         """MyList constructor method"""
-        super()__init__()
+        super().__init__()
 
     def print_sorted(self):
         """prints list in a sorted ascending order"""
