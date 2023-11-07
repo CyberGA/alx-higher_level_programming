@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Defines a function stores the string 
+Defines a function stores the string
 representation to a text file
 """
 import json
