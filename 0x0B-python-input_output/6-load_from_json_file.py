@@ -1,4 +1,4 @@
-#!/usr/bin/pyton3
+#!/usr/bin/python3
 """
 Defines a function that deserialize a
 string rep of an object read from a file
