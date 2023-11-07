@@ -13,4 +13,4 @@ def read_file(filename=""):
         filename (file descriptor): file to be read
     """
     with open(filename) as f:
-        print(f.read())
+        print(f.read(), end="")
