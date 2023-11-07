@@ -4,7 +4,7 @@ Defines a function that appends data to a file
 """
 
 
-def append_file(filename="", text=""):
+def append_write(filename="", text=""):
     """
     apppend to a file
 
