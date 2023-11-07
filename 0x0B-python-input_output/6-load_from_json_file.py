@@ -3,6 +3,7 @@
 Defines a function that deserialize a
 string rep of an object read from a file
 """
+import json
 
 
 def load_from_json_file(filename):
