@@ -100,9 +100,15 @@ class Rectangle(Base):
 
     def display(self):
         """Prints in stdout the Rectangle instance"""
-        print("\n"*self.y, end="")
+        if self.width == 0 or self.height == 0:
+            print("")
+            return
+
+        [print("") for _ in range(self.y)]
         for _ in range(self.height):
-            print("{} {}".format(' '*self.x, "#"*self.width))
+            print(" "*self.x, end="")
+            print("{}".format("#"*self.width), end="")
+            print("")
 
     def __str__(self):
         """
